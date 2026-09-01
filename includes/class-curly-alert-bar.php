@@ -45,7 +45,7 @@ final class Curly_Alert_Bar {
 		add_menu_page(
 			__( 'Alert Bar', 'curly-alert-bar' ),
 			__( 'Alert Bar', 'curly-alert-bar' ),
-			'manage_options',
+			'edit_pages',
 			'alert-bar-settings',
 			array( $this, 'render_options_page' ),
 			'dashicons-megaphone',
@@ -100,7 +100,7 @@ final class Curly_Alert_Bar {
 	 * Render the admin options page (tinyMCE editor + character counter).
 	 */
 	public function render_options_page() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'edit_pages' ) ) {
 			return;
 		}
 		$enabled = get_option( self::OPTION_ENABLED, 0 );

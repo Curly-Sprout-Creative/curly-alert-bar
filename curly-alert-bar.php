@@ -3,7 +3,7 @@
  * Plugin Name:       Curly Alert Bar
  * Plugin URI:        https://github.com/Curly-Sprout-Creative/curly-alert-bar
  * Description:       Admin-controlled announcement bar. Output the text with the [alert_bar_text] shortcode. Requires Oxygen 6: the bar itself is an Oxygen element with class "alert-bar" and a close button with class "alert-bar-close"; this plugin drives its content and front-end visibility.
- * Version:           1.0.1
+ * Version:           1.1.0
  * Author:            Curly Sprout Creative
  * License:           GPL-2.0-or-later
  * Text Domain:       curly-alert-bar
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CURLY_ALERT_BAR_VERSION', '1.0.1' );
+define( 'CURLY_ALERT_BAR_VERSION', '1.1.0' );
 define( 'CURLY_ALERT_BAR_FILE', __FILE__ );
 define( 'CURLY_ALERT_BAR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CURLY_ALERT_BAR_URL', plugin_dir_url( __FILE__ ) );

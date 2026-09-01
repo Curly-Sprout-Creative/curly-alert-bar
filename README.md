@@ -21,6 +21,8 @@ Without those classes the plugin has nothing to show/hide.
 
 - **Admin page** (top-level "Alert Bar"): enable/disable toggle + a tinyMCE
   editor (300-char cap, bold/italic/links only) with a live character counter.
+  Gated on `edit_pages`, so Administrators, Editors, and the "Site Admin" role
+  can all edit it.
 - **`[alert_bar_text]` shortcode**: outputs the stored text (safe HTML, escaped).
 - **No-flash server-side hide**: when disabled or the text is empty, a small
   inline style hides the `.alert-bar` element (`display:none !important`) so it
@@ -53,7 +55,7 @@ curly-alert-bar/
 
 Distributed through **GitHub Releases** via plugin-update-checker (public repo —
 no tokens). Bump `Version:` in `curly-alert-bar.php`, then
-`git tag v1.0.1 && git push origin v1.0.1`. The Action builds and attaches the
+`git tag v1.1.0 && git push origin v1.1.0`. The Action builds and attaches the
 ZIP; installed sites show the update in wp-admin.
 
 ## Replacing Fluent Snippets
