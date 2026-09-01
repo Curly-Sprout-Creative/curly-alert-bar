@@ -13,7 +13,8 @@
 		if (!alertBar) return;
 
 		var cfg = window.curlyAlertBar || {};
-		var isServerDisabled = cfg.serverDisabled === true;
+		var serverDisabled = cfg.serverDisabled;
+		var isServerDisabled = serverDisabled === true || serverDisabled === '1' || serverDisabled === 1;
 		var isSessionClosed = sessionStorage.getItem(cfg.closeKey || 'alertBarClosed') === 'true';
 
 		if (isServerDisabled || isSessionClosed) {

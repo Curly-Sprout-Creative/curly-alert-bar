@@ -189,7 +189,7 @@ final class Curly_Alert_Bar {
 	}
 
 	/**
-	 * Enqueue the front-end visibility script.
+	 * Enqueue the front-end visibility script + no-flash hide.
 	 *
 	 * Runs on every page; the script no-ops when no .alert-bar element exists.
 	 */
@@ -206,13 +206,26 @@ final class Curly_Alert_Bar {
 		$text         = trim( (string) get_option( self::OPTION_TEXT, '' ) );
 		$server_hides = ( ! $enabled || '' === $text );
 
-		wp_localize_script(
+		// No-flash: hide the whole bar server-side when disabled/empty, so it
+		// never renders (or flashes before the JS runs). Same visual result as
+		// clicking the close button.
+		if ( $server_hides ) {
+			wp_register_style( 'curly-alert-bar-hide', false );
+			wp_enqueue_style( 'curly-alert-bar-hide' );
+			wp_add_inline_style( 'curly-alert-bar-hide', '.alert-bar { display: none !important; }' );
+		}
+
+		// Pass real booleans to the JS (wp_localize_script would stringify them
+		// to ""/"1", breaking a strict comparison).
+		wp_add_inline_script(
 			'curly-alert-bar',
-			'curlyAlertBar',
-			array(
-				'serverDisabled' => $server_hides,
-				'closeKey'       => 'alertBarClosed',
-			)
+			'var curlyAlertBar = ' . wp_json_encode(
+				array(
+					'serverDisabled' => $server_hides,
+					'closeKey'       => 'alertBarClosed',
+				)
+			) . ';',
+			'before'
 		);
 	}
 }

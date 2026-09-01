@@ -22,6 +22,9 @@ Without those classes the plugin has nothing to show/hide.
 - **Admin page** (top-level "Alert Bar"): enable/disable toggle + a tinyMCE
   editor (300-char cap, bold/italic/links only) with a live character counter.
 - **`[alert_bar_text]` shortcode**: outputs the stored text (safe HTML, escaped).
+- **No-flash server-side hide**: when disabled or the text is empty, a small
+  inline style hides the `.alert-bar` element (`display:none !important`) so it
+  never renders or flashes before JS runs.
 - **Front-end script** (`assets/js/alert-bar.js`, enqueued): hides the `.alert-bar`
   element when disabled, when the text is empty, or when the visitor dismissed it
   this session (`sessionStorage`); wires up the close button.
