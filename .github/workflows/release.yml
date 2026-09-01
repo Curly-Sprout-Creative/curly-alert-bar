@@ -1,0 +1,29 @@
+name: Build and Release Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build plugin zip
+        run: |
+          mkdir -p dist/curly-alert-bar
+          cp -r curly-alert-bar.php uninstall.php assets includes vendor dist/curly-alert-bar/
+          rm -rf dist/curly-alert-bar/vendor/plugin-update-checker/.git
+          cd dist && zip -r curly-alert-bar.zip curly-alert-bar
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/curly-alert-bar.zip
+          generate_release_notes: true
